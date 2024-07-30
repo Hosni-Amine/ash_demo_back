@@ -1,0 +1,70 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Game {
+  startDate: DateTime!
+  endDate: DateTime!
+  price: Float!
+  usernumber: Float!
+  name: String!
+  _id: ID!
+  poste: Poste
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Poste {
+  title: String!
+  description: String
+  games: [Game!]
+  _id: ID!
+}
+
+type Query {
+  getAllPostes: [Poste!]!
+  getPosteById(id: String!): Poste!
+  getAllGames: [Game!]!
+  getGamesByPosteId(posteId: String!): [Game!]!
+}
+
+type Mutation {
+  createPoste(CreatePosteInput: CreatePosteInput!): Poste!
+  updatePoste(id: ID!, UpdatePosteInput: UpdatePosteInput!): Poste!
+  deletePoste(id: ID!): Poste!
+  createGame(CreateGameInput: CreateGameInput!): Game!
+  updateGame(id: ID!, UpdateGameInput: UpdateGameInput!): Game!
+  deleteGame(id: ID!): Game!
+}
+
+input CreatePosteInput {
+  title: String!
+  description: String
+}
+
+input UpdatePosteInput {
+  id: ID!
+  title: String
+  description: String
+}
+
+input CreateGameInput {
+  startDate: DateTime!
+  endDate: DateTime!
+  price: Float!
+  usernumber: Float!
+  name: String!
+  posteId: String
+}
+
+input UpdateGameInput {
+  startDate: DateTime
+  endDate: DateTime
+  price: Float
+  usernumber: Float
+  name: String
+  posteId: String
+}
